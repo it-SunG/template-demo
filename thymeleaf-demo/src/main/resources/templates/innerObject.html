@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>innerObject</title>
+</head>
+<body>
+
+    <p th:text="${date}"></p>
+    <p th:text="${#dates.format(date)}"></p>
+    <p th:text="${#dates.format(date,'yy_MM_dd hh_MM_ss')}"></p>
+
+    <p th:text="${#dates.createNow()}"></p>
+    <p th:text="${#dates.createToday()}"></p>
+    <p th:text="${#dates.monthName(date)}"></p>
+
+    <!--strings的使用-->
+    <p th:text="${#strings.isEmpty(str)}"></p>
+    <p th:text="${#strings.length(str)}"></p>
+    <p th:text="${#strings.equals(str,'duing')}"></p>
+
+</body>
+</html>

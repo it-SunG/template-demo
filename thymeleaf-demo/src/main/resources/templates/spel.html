@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>spel</title>
+</head>
+<body>
+    <p th:text = "${list[1].name}"></p>
+
+    <div th:each="date:${list}">
+        <p th:text="${date.name}"></p>
+    </div>
+
+    <p th:text="${T(java.lang.Math).random()}"></p>
+</body>
+</html>

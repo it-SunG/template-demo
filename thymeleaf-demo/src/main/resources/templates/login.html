@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+
+<!--    <script type="text/javascript" th:src="@{/webjars/jquery/3.4.1/jquery.js}"></script>-->
+
+    <script type="text/javascript" th:src="@{//code.jquery.com/jquery-3.4.1.min.js}"></script>
+
+</head>
+<body>
+
+<form th:action="@{/login}" method="post">
+    username:
+    <input type="text" name="user">
+    password:
+    <input type="password" name="pass">
+    <input type="submit" name="submit" value="提交">
+</form>
+<!--下面这个方法不行-->
+<!--<a th:href="www.baidu.com">跳转外链</a>-->
+
+<!--必须要加上"//" 自动补全协议 -->
+<a th:href="@{//www.baidu.com}">跳转外链</a>
+<!--渲染效果 <a href="http://www.baidu.com">跳转外链</a>-->
+
+<!--不会增加上下文路径(项目访问路径)，可以同一个服务器上的不同项目，访问到固定地址。-->
+<a th:href="@{~/a.html}">同一服务器</a>
+
+
+</body>
+</html>

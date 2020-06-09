@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--增加引用的命名空间-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- 拼接方式一 -->
+    <p th:text="${user.name} + ' is '+ ${user.age}" >sun</p>
+<!-- 拼接方式二 -->
+    <p th:text="|${user.name} is ${user.age}|"></p>
+
+<!--    第一个p内容被覆盖 第二个p内容不会-->
+    <p th:text="${msg}" th:if="${msg=='yes'}">这是Msg为yes</p>
+    <p th:if="${msg=='yes'}">这是Msg为yes</p>
+
+    <p th:text="${msg}" th:if="${msg=='no'}">这是为no</p>
+
+    <p th:unless="${msg=='no'}">这个unless展示msg</p>
+
+<!--    一定要是div吗 -->
+    <div th:switch="${num}">
+        <p th:case="1">嘿嘿</p>
+        <p th:case="2">呵呵</p>
+        <p th:case="3">哈哈</p>
+    </div>
+
+<table>
+    <thead>
+        <tr>
+            <th>名字</th>
+            <th>年龄</th>
+            <th>index</th>
+            <th>count</th>
+            <th>size</th>
+            <th>current</th>
+            <th>even</th>
+            <th>odd</th>
+            <th>first</th>
+            <th>last</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!--默认的状态 dataStat-->
+        <tr th:each="data:${list}">
+            <!-- 自定义 : 自定义一个变量名 -->
+<!--        <tr th:each="data,state:${list}">-->
+            <td th:text="*{data.name}"></td>
+            <td th:text="${data.age}">age</td>
+            <!--list的索引 从 0 开始-->
+            <td th:text="${dataStat.index}">index</td>
+            <!--计数 从 1 开始-->
+            <td th:text="${dataStat.count}">count</td>
+            <!--list的大小-->
+            <td th:text="${dataStat.size}">size</td>
+            <!--当前对象值: User(name=sun1, age=18)-->
+            <td th:text="${dataStat.current}">current</td>
+            <!--是否是偶数-->
+            <td th:text="${dataStat.even}">even</td>
+            <!--是否是奇数-->
+            <td th:text="${dataStat.odd}">odd</td>
+            <!--是否是第一个数-->
+            <td th:text="${dataStat.first}">first</td>
+            <!--是否是最后一个数-->
+            <td th:text="${dataStat.last}">last</td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

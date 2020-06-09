@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>inline</title>
+</head>
+<body>
+
+    <p>加油,<span th:text="${info}"></span></p>
+
+    <p>加油, [[${info}]]</p>
+
+<!--    后面的被覆盖了-->
+    <p th:text="${info}">加油, [[${info}]]</p>
+
+<!--  渲染结果:  加油, [[${info}]] -->
+    <p th:inline="none"> 加油, [[${info}]]</p>
+
+    <!--禁用内联表达式  ??? -->
+<!--  渲染结果:  加油, [[sun]] -->
+    <p th:inline="none"> 加油, [[<span th:text="${info}"></span>]] </p>
+<!--  渲染结果:  加油, [[sun]] -->
+    <p> 加油, [[<span th:text="${info}"></span>]] </p>
+
+    <p th:inline="none"> 加油, <span>[[${info}]]</span> </p>
+
+<!--   渲染结果:  [User(name=sun1, age=18), User(name=sun2, age=28), User(name=sun3, age=38)]-->
+    <p>[[${list}]]</p>
+
+
+                <!--   将数据传入 js 中     -->
+<!--    语法错误   -->
+<!--    <script type="text/javascript">-->
+<!--        var inf = [[${info}]]-->
+<!--        console.log(inf)-->
+<!--    </script>-->
+
+<!--    <script type="text/javascript" th:inline="javascript">-->
+<!--        var inf = [[${info}]]-->
+<!--        console.log(inf)-->
+<!--    </script>-->
+
+    <!--同样支持动静分离  但原本的注释不能使用-->
+    <!--注意： 只能在html文件中的js代码里生效  外部的js文件中无法使用-->
+    <script type="text/javascript" th:inline="javascript">
+        var inf = /*[[${info}]]*/ "测试";
+        console.log(inf)
+    </script>
+</body>
+</html>
